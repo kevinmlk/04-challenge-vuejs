@@ -1,10 +1,10 @@
 <script setup>
   import { ref } from "vue";
 
+  const emit = defineEmits["sendMessage"];
+
   // Ref to store the input message
   const messageInput = ref("");
-  
-  console.log(messageInput);
 
   function doit() {
     // Create a new message object
@@ -34,6 +34,8 @@
         emit("sendMessage", data.data.message);
         // Clear the input field
         messageInput.value = "";
+      } else {
+        console.error("Error: ", data);
       }
     })
     .catch(error => {
