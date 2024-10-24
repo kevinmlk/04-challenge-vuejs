@@ -2,7 +2,8 @@
 import { ref } from 'vue';
 
 const messageInput = ref('');
-const emit = defineEmits(['sendMessage']); // Define the 'sendMessage' event
+// Define the 'sendMessage' event
+const emit = defineEmits(['sendMessage']);
 
 function doit() {
   console.log("Message Input Value:", messageInput.value);
@@ -27,8 +28,10 @@ function doit() {
   .then(response => response.json())
   .then(data => {
     if (data.status === 'success') {
-      emit('sendMessage', data.data.message); // Emit the event with the new message data
-      messageInput.value = ''; // Clear the input field
+      // Emit the event with the new message data
+      emit('sendMessage', data.data.message);
+      // Clear the input field
+      messageInput.value = '';
     } else {
       console.error("Error: ", data);
     }
